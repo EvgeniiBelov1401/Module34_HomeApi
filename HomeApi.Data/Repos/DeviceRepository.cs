@@ -101,7 +101,7 @@ namespace HomeApi.Data.Repos
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemakeDevice(Device device, RemakeDeviceQuery query)
+        public async Task RemakeDevice(Device device,Room room, RemakeDeviceQuery query)
         {
             if (!string.IsNullOrEmpty(query.NewName))
                 device.Name = query.NewName;
@@ -115,7 +115,8 @@ namespace HomeApi.Data.Repos
                 device.CurrentVolts = (int)query.NewCurrentVolts;
             if(query.NewGasUsage!=false)
                 device.GasUsage=(bool)query.NewGasUsage;
-
+            if (!string.IsNullOrEmpty(query.NewRoom))
+                device.Room.Name = query.NewRoom;
 
             var entry = _context.Entry(device);
             if (entry.State == EntityState.Detached)

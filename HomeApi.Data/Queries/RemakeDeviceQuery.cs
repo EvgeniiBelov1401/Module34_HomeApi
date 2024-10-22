@@ -14,10 +14,11 @@ namespace HomeApi.Data.Queries
         public string NewSerial { get; }
         public int NewCurrentVolts { get; }
         public bool NewGasUsage { get; }
+        public string NewRoom { get; }
 
         public RemakeDeviceQuery(string newName = null, string newManufacturer = null, string newModel = null,
 
-            string newSerial = null, int newCurrentVolts = 0, bool newGasUsage = false)
+            string newSerial = null, int newCurrentVolts = 0, bool newGasUsage = false, string newRoom = null)
         {
             NewName = newName;
             NewManufacturer = newManufacturer;
@@ -25,6 +26,8 @@ namespace HomeApi.Data.Queries
             NewSerial = newSerial;
             NewCurrentVolts = newCurrentVolts;
             NewGasUsage = newGasUsage;
+            NewRoom = newRoom;
+            newRoom = newRoom;
         }
     }
 

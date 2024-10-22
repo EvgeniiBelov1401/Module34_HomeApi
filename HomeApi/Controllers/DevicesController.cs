@@ -116,6 +116,9 @@ namespace HomeApi.Controllers
             [FromRoute] Guid id,
             [FromBody] EditAllDeviceRequest request)
         {
+            var room = await _rooms.GetRoomByName(request.NewRoom);
+            if (room == null)
+                return StatusCode(400, $"Ошибка: Комната {request.NewRoom} не подключена. Сначала подключите комнату!");
 
             var device = await _devices.GetDeviceById(id);
             if (device == null)
@@ -123,6 +126,7 @@ namespace HomeApi.Controllers
 
             await _devices.RemakeDevice(
                 device,
+                room,
                 new RemakeDeviceQuery(request.NewName, request.NewManufacturer, request.NewModel, request.NewSerial, request.NewCurrentVolts, request.NewGasUsage)
             );
 
@@ -132,7 +136,8 @@ namespace HomeApi.Controllers
                 $"Модель - {device.Model},\n" +
                 $"Серийный номер - {device.SerialNumber},\n" +
                 $"Вольтаж - {device.CurrentVolts},\n" +
-                $"Подключение к газу - {device.GasUsage}");
+                $"Подключение к газу - {device.GasUsage}\n" +
+                $"Комната - {device.Room.Name}");
 
         }
     }
