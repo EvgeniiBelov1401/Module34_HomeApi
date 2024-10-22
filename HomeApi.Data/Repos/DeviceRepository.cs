@@ -100,5 +100,28 @@ namespace HomeApi.Data.Repos
             _context.Devices.Remove(device);
             await _context.SaveChangesAsync();
         }
+
+        public async Task RemakeDevice(Device device, RemakeDeviceQuery query)
+        {
+            if (!string.IsNullOrEmpty(query.NewName))
+                device.Name = query.NewName;
+            if (!string.IsNullOrEmpty(query.NewManufacturer))
+                device.Manufacturer = query.NewManufacturer;
+            if (!string.IsNullOrEmpty(query.NewModel))
+                device.Model = query.NewModel;
+            if (!string.IsNullOrEmpty(query.NewSerial))
+                device.SerialNumber = query.NewSerial;
+            if (query.NewCurrentVolts!=0)
+                device.CurrentVolts = (int)query.NewCurrentVolts;
+            if(query.NewGasUsage!=false)
+                device.GasUsage=(bool)query.NewGasUsage;
+
+
+            var entry = _context.Entry(device);
+            if (entry.State == EntityState.Detached)
+                _context.Devices.Update(device);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
