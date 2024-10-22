@@ -127,11 +127,11 @@ namespace HomeApi.Controllers
             await _devices.RemakeDevice(
                 device,
                 room,
-                new RemakeDeviceQuery(request.NewName, request.NewManufacturer, request.NewModel, request.NewSerial, request.NewCurrentVolts, request.NewGasUsage, request.NewRoom)
+                new RemakeDeviceQuery(request.NewName, request.NewManufacturer, request.NewModel, request.NewSerial, request.NewCurrentVolts, request.NewGasUsage,  new Room())
             );
 
 
-            return StatusCode(200, $"Устройство обновлено!\n" +
+            return StatusCode(200, $"Устройство обновлено!\n\n" +
                 $"Имя - {device.Name},\n" +
                 $"Производитель - {device.Manufacturer},\n" +
                 $"Модель - {device.Model},\n" +

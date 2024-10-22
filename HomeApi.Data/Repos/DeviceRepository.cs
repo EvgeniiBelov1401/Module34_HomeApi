@@ -116,8 +116,8 @@ namespace HomeApi.Data.Repos
                 device.SerialNumber = query.NewSerial;
                 device.CurrentVolts = (int)query.NewCurrentVolts;
                 device.GasUsage = (bool)query.NewGasUsage;
-            if (!string.IsNullOrEmpty(query.NewRoom))
-                room.Name = query.NewRoom;
+            if (!string.IsNullOrEmpty(query.NewRoom.Name))
+                room.Name = query.NewRoom.Name;
 
             var entry = _context.Entry(device);
             if (entry.State == EntityState.Detached)
