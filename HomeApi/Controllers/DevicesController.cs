@@ -99,7 +99,7 @@ namespace HomeApi.Controllers
         }
 
         [HttpDelete]
-        [Route("id")]
+        [Route("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var device= await _devices.GetDeviceById(id);
