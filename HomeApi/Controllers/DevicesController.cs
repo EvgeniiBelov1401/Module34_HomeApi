@@ -120,6 +120,7 @@ namespace HomeApi.Controllers
             if (room == null)
                 return StatusCode(400, $"Ошибка: Комната {request.NewRoom} не подключена. Сначала подключите комнату!");
 
+
             var device = await _devices.GetDeviceById(id);
             if (device == null)
                 return StatusCode(400, $"Ошибка: Устройство с идентификатором {id} не существует.");
@@ -127,7 +128,7 @@ namespace HomeApi.Controllers
             await _devices.RemakeDevice(
                 device,
                 room,
-                new RemakeDeviceQuery(request.NewName, request.NewManufacturer, request.NewModel, request.NewSerial, request.NewCurrentVolts, request.NewGasUsage,  new Room())
+                new RemakeDeviceQuery(request.NewName, request.NewManufacturer, request.NewModel, request.NewSerial, request.NewCurrentVolts, request.NewGasUsage, request.NewRoom)
             );
 
 
