@@ -114,9 +114,7 @@ namespace HomeApi.Data.Repos
                 device.Model = query.NewModel;
             if (!string.IsNullOrEmpty(query.NewSerial))
                 device.SerialNumber = query.NewSerial;
-            if (query.NewCurrentVolts != 0)
                 device.CurrentVolts = (int)query.NewCurrentVolts;
-            if (query.NewGasUsage != false)
                 device.GasUsage = (bool)query.NewGasUsage;
             if (!string.IsNullOrEmpty(query.NewRoom))
                 room.Name = query.NewRoom;
