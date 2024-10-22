@@ -27,7 +27,6 @@ namespace HomeApi.Data.Queries
             NewCurrentVolts = newCurrentVolts;
             NewGasUsage = newGasUsage;
             NewRoom = newRoom;
-            newRoom = newRoom;
         }
     }
 
